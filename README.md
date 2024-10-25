@@ -40,12 +40,44 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 0. Vilka branches som finns
 
-### 1. Search for movie
+### 1. Present movie
 
-### 2. Present movie
+(Prepp) - En baskomponent med Syntax, som tar in en Movie.
+
+- Movie type.
+- Ett exempelmovie som finns redan hårdkodad
+
+- Vad är en react component? Vilka element?
+- CSS vs script vs HTML
+- Ta in props
+- Task: Visa upp Namn + bild + kanske rating?
+
+### 2. Search for movie
+
+(Prepp) - Input field component
+
+- AnvändarInput
+- OnClick functioner + skicka mot Backend
+- Mappa ut svaren för att sedan kunna visa upp dem med massa boxes.
 
 ### 3. Add to favorites
 
+- Knapp för att lägga till favoriter (IKON??)
+- Skicka till favoriter til BE
+
+### 4. Show favorites
+
+- Ny route? /my-favorites
+- Hämta alla favoriter med get
+- Visa upp dem + hur många favoritmarkeringar de har?
+- Länka dit
+
 ### 4. Responsivenes
+
+- lite info om hur man kan göra saker responsivt, och låt dem gå lösa.
+
+### 5. Fördjupande länkar
+
+- Next.js, Styled components, etc.
 
 ## Backend Path
