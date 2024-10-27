@@ -22,14 +22,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 0 Getting started
 
-To learn more about Next.js, take a look at the following resources:
+- Information about how to read the readme, tools using
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Next.js + React + TypeScript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The technologies that we will be using in this project is TypeScript for both backend and frontend, [React.js](https://react.dev/) for the frontend, and [Next.js](https://nextjs.org/docs) which is a React framework where you can create Server Side Rendered (SSR) application and Backend-For-Frontends (BFFs) smoothly.
+
+### Downloading the repo
+
+### Starting the application
+
+To start the application you need to run:
+
+- `npm install` - installing everything that is needed
+- `npm run dev` - starts the application
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Step 1
 
@@ -81,3 +91,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 - Next.js, Styled components, etc.
 
 ## Backend Path
+
+## Learn More
+
+Did you like the tools we used in the workshop?
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
