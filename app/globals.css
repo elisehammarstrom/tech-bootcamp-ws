@@ -18,4 +18,9 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  --imgWidth: 225px;
+  --imgHeight: 300px;
+  --imgWidthMobile: 100px;
+  --imgHeightMobile: 150px;
+  --border-radius: 0.5em;
 }
