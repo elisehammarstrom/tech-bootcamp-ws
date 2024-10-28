@@ -49,6 +49,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 0. Vilka branches som finns
    .- Att styling är fully optional men KUL
+   - Du kommer troligtvis inte "hinna klart" - för finns inget riktigt klart. Men för att få ut maximala av workshopen, hade jag rekommenderat att kanske inte lägga för mycket tid på stylingen.
 
 ## 1. Present movie
 
@@ -75,6 +76,10 @@ Time to be playful! Now is the time to create (and style) your own MovieCard. Le
 - CSS vs script vs HTML
 - Ta in props
 - Task: Visa upp Namn + bild + kanske rating?
+
+### 1.2 (Enhancements)
+
+- Accept and show description of movie, actors etc.
 
 ## 2. Search for movie
 
@@ -113,27 +118,56 @@ Congrats for completing the first two steps and connecting frontend to the backe
 
 - Img of how Fe now calls BE and that is what we did :D
 
-### 3. Add to favorites
+## 3. Add to favorites
+
+Next step is to add the possibility to select favorite movies!
+
+### 3.1 Favorite Icon
 
 - Knapp för att lägga till favoriter (IKON??)
-- Skicka till favoriter til BE
+- extend movie type with isFavorite, and send that to card and display something depending on if favorite or not
+- HOW to use local assets
 
-### 4. Show favorites
+### 3.2 Toggle favorite on change
+
+- add icon in button
+- onClick, send to new endpoint. Id is the payload.
+  [TODO: Fundera över hur du vill göra med state här - kanske belysa att det är problematiskt? Use streaming????]
+
+## 4. Show favorites
+
+Lastly, we want to be able to show our own favouries!
+
+### 4.1 Add new route
+
+Firstly, we want to create a new page where we display our favorites.
 
 - Ny route? /my-favorites
-- Hämta alla favoriter med get
-- Visa upp dem + hur många favoritmarkeringar de har?
-- Länka dit
+- Link to route from home page. <a> link.
+- Title "My favorites"
 
-### 4. Responsivenes
+### 4.2 Fetch and show your favorites
+
+- Hämta alla favoriter med getFavourites, och visa upp dem i ditt MovieGrid
+- Utöka movieGrid item med information om hur många favoritmarkeringar de har.
+
+### 4.3 (Enhancements)
+
+- Loading symbol
+
+### 4.4 Celebration!
+
+Now you have completed the "main" part of this workshop - congratulations! Either go back and do the extension, or challenge yourself with improving the responsiveness or A11y which you can read about in the steps below!
+
+### 5. Responsivenes
 
 - lite info om hur man kan göra saker responsivt, och låt dem gå lösa.
 
-### 5. Accessibility (A11y)
+### 6. Accessibility (A11y)
 
 - Lite info om a11y och varför det är viktigt, och låt den gå lösa.
 
-### 5. Fördjupande länkar
+### 7. Fördjupande länkar
 
 - Next.js, Styled components, etc.
 
