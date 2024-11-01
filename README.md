@@ -50,6 +50,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 0. Vilka branches som finns
    .- Att styling är fully optional men KUL
    - Du kommer troligtvis inte "hinna klart" - för finns inget riktigt klart. Men för att få ut maximala av workshopen, hade jag rekommenderat att kanske inte lägga för mycket tid på stylingen.
+   - enhancements är småsaker som jag rekommenderar att gå tillbaka till men inte göra på första rundan
 
 ## 1. Present movie
 
@@ -143,7 +144,7 @@ Lastly, we want to be able to show our own favouries!
 Firstly, we want to create a new page where we display our favorites.
 
 - Ny route? /my-favorites
-- Link to route from home page. <a> link.
+- Link to route from home page. `<a>` link.
 - Title "My favorites"
 
 ### 4.2 Fetch and show your favorites
