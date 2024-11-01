@@ -71,7 +71,7 @@ const searchMovies = [
 ];
 
 export default function Home() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<Movie[]>([]);
   const [input, setInput] = useState("");
   const [movies, setMovies] = useState<Movie[]>(defaultMovies);
 
@@ -84,7 +84,14 @@ export default function Home() {
   return (
     <div className="bg-rose-950  items-center justify-items-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 items-center sm:items-start">
-        <p>{message}</p>
+        {message.map((movie) => (
+          <MovieCard
+            title={movie.title}
+            backgroundImg={movie.img}
+            key={movie.id}
+            isFavorite={movie.isFavorite}
+          />
+        ))}
         <button onClick={onClick}>TRY TO CLICK ME</button>
         <div className="flex gap-4">
           <input
