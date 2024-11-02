@@ -1,7 +1,7 @@
-import { Movie } from "../types/Movie";
+import { Movie } from "@/app/types/Movie";
+import {NextResponse} from "next/server";
 
 export async function GET() {
-  // TODO Sara: Here is a be endpoint, for example!
   const myMovies: Movie[] = [
     {
       title: "Titanic",
@@ -10,5 +10,5 @@ export async function GET() {
       isFavorite: true,
     },
   ];
-  return Response.json({ data: myMovies });
+  return NextResponse.json({ data: myMovies });
 }
