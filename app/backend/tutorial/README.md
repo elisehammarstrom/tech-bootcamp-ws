@@ -151,11 +151,81 @@ browse to see if you find something useful for us.
 You may see that they already have a search endpoint that we can use. Typing in "star" in the title 
 search field and clicking Search will give you a list of movies with the word "star" in the title.
 ![OMDB API](resources/omdb-search.png "OMDB API")
-Here we see what their endpoint looks like, and what response we should expect.
+Here we see what this endpoint looks like, and what response it sends. However, this endpoint is for exact
+matches, and we want to search for partial matches. Specifying the `s` parameter in the query string will
+search for several partial matches instead. We will use this. 
 
 ## 3.4 OMDB Client 
 Now when we know what endpoint we should call, we create a client in our backend that fetches 
-movie titles from the OMDB API. Create a file `omdbClient.ts` in the `movies` directory.
+movie titles from the OMDB API. 
+
+### 3.4.1 Create the omdbClient file
+Create a separate file `omdbClient.ts` in the `movies` directory.
+```typescript
+import axios from 'axios';
+import {Movie} from "@/app/types/Movie";
+
+class OmdbClient {
+    private readonly apiKey: string;
+    private readonly baseUrl: string;
+
+    constructor() {
+        const apiKey = process.env.OMDB_API_KEY || '';
+        const baseUrl = process.env.OMDB_BASE_URL || '';
+        if (!apiKey) {
+            throw new Error('OMDb API key not provided. Set the OMDB_API_KEY environment variable in .env.');
+        } else if (!baseUrl) {
+            throw new Error('OMDb API URL not provided. Set the OMDB_API_URL environment variable in .env.');
+        }
+        this.apiKey = apiKey;
+        this.baseUrl = baseUrl;
+    }
+}
+```
+This holds the `apiKey` that you generated for yourself in the beginning, as well as the `baseUrl` for 
+the OMDB API.
+### 3.4.2 Add a search method to the OmdbClient class
+Now we want to add a method `searchByTitle` that searches OMDB for a title. 
+```typescript
+    async searchByTitle(title: string) {
+        try {
+            const response = await axios.get(this.baseUrl, {
+                params: {
+                    s: title,
+                    apikey: this.apiKey,
+                },
+            });
+            if (response.data && response.data.Response === 'True') {
+                return [response.data];
+            } else {
+                return [];
+            }
+        } catch (error) {
+            console.error('Error fetching movie by title from OMDb:', error);
+            throw new Error('Failed to fetch movie from OMDb');
+        }
+    }
+```
+### 3.4.3 Call the search method from the route
+Now we can try calling this method from the api movies route that we created
+```typescript
+export async function GET(request: NextRequest): Promise<NextResponse> {
+    const partialTitle = request.nextUrl.searchParams.get("title")
+    if (!partialTitle) {
+        return NextResponse.json({ error: "Missing title query parameter" }, { status: 400 });
+    }
+    const matchingMovies = await omdbClient.searchByTitle(partialTitle); // <-- Add this line
+    return NextResponse.json(matchingMovies); // <-- Return the matching movies
+} 
+```
+### 3.4.4 Verify the endpoint response
+Again, curl the endpoint in the terminal to see if it works
+```bash
+curl -X GET http://localhost:3000/api/movies?title=star
+```
+it should return a list of movies with the word "star" in the title.
+
+
 
 
 
