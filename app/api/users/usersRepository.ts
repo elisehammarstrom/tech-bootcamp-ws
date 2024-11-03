@@ -1,7 +1,6 @@
 import { prisma } from "@/prisma/prismaClient";
 import { User } from "@prisma/client";
 
-
 class UserRepository {
     /**
      * Retrieve a user by their ID.
