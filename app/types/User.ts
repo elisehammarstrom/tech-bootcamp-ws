@@ -1,6 +1,6 @@
-import {Movie} from "@/app/types/Movie";
+import {MovieDto} from "@/app/types/MovieDto";
 
 export type User = {
     id: string;
-    favorites: Movie [];
+    favorites: MovieDto [];
 };

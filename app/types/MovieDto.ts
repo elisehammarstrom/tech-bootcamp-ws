@@ -1,7 +1,8 @@
-export type Movie = {
+export type MovieDto = {
   /* Feel free to add more - så kan de själva välja i FE hur mycket detaljer de vill visa upp */
-  id: number;
+  imdbId: string;
   title: string;
   img: string;
+  userId: string;
   isFavorite?: boolean;
 };

@@ -1,8 +1,8 @@
-import { Movie } from "@/app/types/Movie";
+import { MovieDto } from "@/app/types/MovieDto";
 import {NextResponse} from "next/server";
 
 export async function GET() {
-  const myMovies: Movie[] = [
+  const myMovies: MovieDto[] = [
     {
       title: "Titanic",
       id: 1,

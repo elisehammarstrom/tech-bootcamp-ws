@@ -5,9 +5,9 @@ This is the root folder, meaning that the route will be localhost:3000/
 "use client"; // Stating that this is a component to be rendered client-side
 import { useState } from "react";
 import MovieCard from "./components/MovieCard";
-import { Movie } from "./types/Movie";
+import { MovieDto } from "./types/MovieDto";
 
-const defaultMovies: Movie[] = [
+const defaultMovies: MovieDto[] = [
   {
     title: "Titanic",
     id: 1,
@@ -71,9 +71,9 @@ const searchMovies = [
 ];
 
 export default function Home() {
-  const [message, setMessage] = useState<Movie[]>([]);
+  const [message, setMessage] = useState<MovieDto[]>([]);
   const [input, setInput] = useState("");
-  const [movies, setMovies] = useState<Movie[]>(defaultMovies);
+  const [movies, setMovies] = useState<MovieDto[]>(defaultMovies);
 
   const onClick = async () => {
     const response = await fetch("/api");

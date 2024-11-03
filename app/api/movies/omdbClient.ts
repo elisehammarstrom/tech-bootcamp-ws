@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Movie} from "@/app/types/Movie";
+import {OmdbSearchResponse} from "@/app/types/omdb/OmdbSearchResponse";
 
 class OmdbClient {
     private readonly apiKey: string;
@@ -17,7 +17,8 @@ class OmdbClient {
         this.baseUrl = baseUrl;
     }
 
-    async searchByTitle(title: string) {
+    /* Add this */
+    async searchByTitle(title: string): Promise<OmdbSearchResponse> {
         try {
             const response = await axios.get(this.baseUrl, {
                 params: {
@@ -26,9 +27,9 @@ class OmdbClient {
                 },
             });
             if (response.data && response.data.Response === 'True') {
-                return [response.data];
+                return response.data;
             } else {
-                return [];
+                return {} as OmdbSearchResponse;
             }
         } catch (error) {
             console.error('Error fetching movie by title from OMDb:', error);
@@ -62,5 +63,4 @@ class OmdbClient {
     }*/
 }
 
-// Instantiate and export an instance of OmdbClient with the API key from environment variables
 export const omdbClient = new OmdbClient();

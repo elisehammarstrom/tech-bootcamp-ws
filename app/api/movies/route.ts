@@ -1,11 +1,11 @@
 import {NextRequest, NextResponse} from "next/server";
-import {omdbClient} from "@/app/api/movies/omdbClient";
+import {movieService} from "@/app/api/movies/movieService";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
     const partialTitle = request.nextUrl.searchParams.get("title")
     if (!partialTitle) {
         return NextResponse.json({ error: "Missing title query parameter" }, { status: 400 });
     }
-    const matchingMovies = await omdbClient.searchByTitle(partialTitle);
+    const matchingMovies = await movieService.searchByTitle(partialTitle);
     return NextResponse.json(matchingMovies);
 }
