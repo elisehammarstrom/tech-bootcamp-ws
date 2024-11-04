@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import {movieService} from "@/app/api/movies/movieService";
+import {movieService} from "@/app/api/movies/MovieService";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
     const partialTitle = request.nextUrl.searchParams.get("title")

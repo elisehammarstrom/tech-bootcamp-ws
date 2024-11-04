@@ -166,7 +166,7 @@ Here we see what this endpoint looks like, and what response it sends. However, 
 matches, and we want to search for partial matches. Specifying the `s` parameter in the query string will
 search for several partial matches instead. We will use this. 
 
-## 3.4 OMDB Client 
+## 3.4 Integrate with the OMDB API
 Now when we know what endpoint we should call, we create a client in our backend that fetches 
 movie titles from the OMDB API. 
 
@@ -338,6 +338,23 @@ Curl the endpoint in the terminal to see if it works
 curl -X GET http://localhost:3000/api/movies?title=star
 ```
 it should return a list of movies with the word "star" in the title.
+For now, userId will be empty, and isFavorite will be false for all entries. We will add these later.
+
+## 3.5 Saving favorite movies
+### 3.5.1 RESTful POST endpoint for saving favorite movies
+We want our users to be able to like their favorite movies. We will add a POST endpoint that will save a movie. 
+The endpoint will look like this:
+```bash
+POST /api/users/{id}/favorites/{imdbId}
+```
+where users is still a resource, and favorites is a sub-resource of users. I.e. a users favorites only belongs
+to that specific user.
+
+### 3.5.2 Create the API route for favorites
+Add the file `app/api/users/[userId]/favorites/[imdbId]/route.ts` with the following content:
+```typescript
+
+``` 
 
 
 
