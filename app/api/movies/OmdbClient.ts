@@ -17,7 +17,6 @@ class OmdbClient {
         this.baseUrl = baseUrl;
     }
 
-    /* Add this */
     async searchByTitle(title: string): Promise<OmdbSearchResponse> {
         try {
             const response = await axios.get(this.baseUrl, {
@@ -37,20 +36,14 @@ class OmdbClient {
         }
     }
 
-    /**
-     * Example additional method to search by IMDb ID
-     * @param imdbID - The IMDb ID of the movie to fetch.
-     * @returns The movie data or null if not found.
-     */
-    /*async searchByImdbID(imdbID: string) {
+    async findByImdbId(imdbID: string) {
         try {
-            const response = await axios.get(OMDB_API_URL, {
+            const response = await axios.get(this.baseUrl, {
                 params: {
                     i: imdbID,
                     apikey: this.apiKey,
                 },
             });
-
             if (response.data && response.data.Response === 'True') {
                 return response.data;
             } else {
@@ -60,7 +53,7 @@ class OmdbClient {
             console.error('Error fetching movie by IMDb ID from OMDb:', error);
             throw new Error('Failed to fetch movie by IMDb ID from OMDb');
         }
-    }*/
+    }
 }
 
 export const omdbClient = new OmdbClient();

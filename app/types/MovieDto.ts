@@ -3,6 +3,5 @@ export type MovieDto = {
   imdbId: string;
   title: string;
   img: string;
-  userId: string;
-  isFavorite?: boolean;
+  isFavorite: boolean;
 };

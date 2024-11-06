@@ -1,5 +1,5 @@
-import { prisma } from "@/prisma/prismaClient";
-import { UserEntity } from "@prisma/client";
+import {prisma} from "@/prisma/prismaClient";
+import {UserEntity} from "@prisma/client";
 
 class UserRepository {
     /**
@@ -9,12 +9,11 @@ class UserRepository {
      */
     async findUserById(id: string): Promise<UserEntity | null> {
         try {
-            const user = await prisma.userEntity.findUnique({
-                where: { id },
+            return await prisma.userEntity.findUnique({
+                where: {id},
             });
-            return user;
         } catch (error) {
-            console.error("Error retrieving user by ID:", error);
+            console.error("User not found:", error);
             throw error; // Re-throw the error so it can be handled by the calling function
         }
     }
