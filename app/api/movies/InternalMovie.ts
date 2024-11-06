@@ -1,8 +1,8 @@
 import {OmdbMovie} from "@/app/types/omdb/OmdbMovie";
-import {MovieDto} from "@/app/types/MovieDto";
+import {Movie} from "@/app/types/Movie";
 import {MovieEntity} from "@prisma/client";
 
-export class Movie {
+export class InternalMovie {
     private _id: string;
     private _imdbId: string;
     private title: string;
@@ -23,8 +23,8 @@ export class Movie {
         return this._imdbId;
     }
 
-    static fromOmdbMovie(omdbMovie: OmdbMovie): Movie {
-        return new Movie(
+    static fromOmdbMovie(omdbMovie: OmdbMovie): InternalMovie {
+        return new InternalMovie(
             "",
             omdbMovie.imdbID,
             omdbMovie.Title,
@@ -32,8 +32,8 @@ export class Movie {
         );
     }
 
-    static fromEntity(movieEntity: MovieEntity): Movie {
-        return new Movie(
+    static fromEntity(movieEntity: MovieEntity): InternalMovie {
+        return new InternalMovie(
             movieEntity.id,
             movieEntity.imdb_id,
             movieEntity.title,
@@ -42,7 +42,7 @@ export class Movie {
     }
 
 
-    public toDto(isFavorite: boolean): MovieDto {
+    public toDto(isFavorite: boolean): Movie {
         return {
             imdbId: this._imdbId,
             title: this.title,

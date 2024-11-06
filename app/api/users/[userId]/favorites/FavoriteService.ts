@@ -1,7 +1,7 @@
-import {MovieDto} from "@/app/types/MovieDto";
+import {Movie} from "@/app/types/Movie";
 import {userService, UserService} from "@/app/api/users/UserService";
 import {movieService, MovieService} from "@/app/api/movies/MovieService";
-import {Movie} from "@/app/api/movies/Movie";
+import {InternalMovie} from "@/app/api/movies/InternalMovie";
 import {favoriteRepository} from "@/app/api/users/[userId]/favorites/FavoriteRepository";
 import {FavoriteEntity} from "@prisma/client";
 
@@ -14,8 +14,8 @@ export class FavoriteService {
         this.userService = userService;
     }
 
-    async addFavorite(userId: string, imdbId: string, ): Promise<MovieDto> {
-        const favoriteMovie: Movie = await movieService.getOrCreateMovie(imdbId);
+    async addFavorite(userId: string, imdbId: string, ): Promise<Movie> {
+        const favoriteMovie: InternalMovie = await movieService.getOrCreateMovie(imdbId);
         const favoriteEntity: FavoriteEntity | null = await favoriteRepository.saveFavorite(userId, favoriteMovie.id!);
         if (!favoriteEntity) {
             throw new Error(`Could not add favorite movie with IMDB ID ${imdbId} for user ${userId}`);

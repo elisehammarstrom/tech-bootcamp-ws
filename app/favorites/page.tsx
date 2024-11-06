@@ -5,9 +5,9 @@ This is the root folder, meaning that the route will be localhost:3000/
 "use client"; // Stating that this is a component to be rendered client-side
 import { useState } from "react";
 import MovieCard from "../components/MovieCard";
-import { MovieDto } from "../types/MovieDto";
+import { Movie } from "../types/Movie";
 
-const defaultMovies: MovieDto[] = [
+const defaultMovies: Movie[] = [
   {
     title: "Titanic",
     imdbId: "1",
@@ -18,6 +18,7 @@ const defaultMovies: MovieDto[] = [
     imdbId: "2",
     title: "My Movie",
     img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
+    isFavorite: false,
   },
   {
     imdbId: "3",
@@ -29,21 +30,24 @@ const defaultMovies: MovieDto[] = [
     title: "Notebook",
     imdbId: "4",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
+    isFavorite: false,
   },
   {
     title: "Notebook",
     imdbId: "5",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
+    isFavorite: false,
   },
   {
     title: "Notebook",
     imdbId: "6",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
+    isFavorite: false,
   },
 ];
 
 export default function Home() {
-  const [movies, setMovies] = useState<MovieDto[]>(defaultMovies);
+  const [movies, setMovies] = useState<Movie[]>(defaultMovies);
 
   return (
     /* TODO: Refactorera till _app eller liknande så att det inte behöver ligga här */
