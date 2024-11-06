@@ -10,28 +10,28 @@ import { Movie } from "./types/Movie";
 const defaultMovies: Movie[] = [
   {
     title: "Titanic",
-    id: 1,
+    imdbId: "1",
     img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
     isFavorite: true,
   },
   {
-    id: 2,
+    imdbId: "2",
     title: "My Movie",
     img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
   },
   {
-    id: 3,
+    imdbId: "3",
     title: "My Movie",
     img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
     isFavorite: true,
   },
   {
-    id: 4,
+    imdbId: "4",
     title: "My Movie",
     img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
   },
   {
-    id: 5,
+    imdbId: "5",
     title: "My Movie",
     img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
   },
@@ -40,32 +40,32 @@ const defaultMovies: Movie[] = [
 const searchMovies = [
   {
     title: "Notebook",
-    id: 1,
+    imdbId: "1",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
   },
   {
     title: "Notebook",
-    id: 2,
+    imdbId: "2",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
   },
   {
     title: "Notebook",
-    id: 3,
+    imdbId: "3",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
   },
   {
     title: "Notebook",
-    id: 4,
+    imdbId: "4",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
   },
   {
     title: "Notebook",
-    id: 5,
+    imdbId: "5",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
   },
   {
     title: "Notebook",
-    id: 6,
+    imdbId: "6",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
   },
 ];
@@ -88,7 +88,7 @@ export default function Home() {
           <MovieCard
             title={movie.title}
             backgroundImg={movie.img}
-            key={movie.id}
+            key={movie.imdbId}
             isFavorite={movie.isFavorite}
           />
         ))}
@@ -106,7 +106,7 @@ export default function Home() {
             <MovieCard
               title={movie.title}
               backgroundImg={movie.img}
-              key={movie.id}
+              key={movie.imdbId}
               isFavorite={movie.isFavorite}
             />
           ))}

@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FavoriteEntity {
+  id       String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id  String      @db.VarChar(50)
+  movie_id String      @db.Uuid
+  movie    MovieEntity @relation(fields: [movie_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user     UserEntity  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("favorites")
+}
+
+model MovieEntity {
+  id       String           @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  title    String           @db.VarChar(255)
+  img      String
+  imdb_id  String           @unique @db.VarChar(50)
+  favorite FavoriteEntity[]
+
+  @@map("movies")
+}
+
+model UserEntity {
+  id       String           @id @db.VarChar(50)
+  favorite FavoriteEntity[]
+
+  @@map("users")
+}
