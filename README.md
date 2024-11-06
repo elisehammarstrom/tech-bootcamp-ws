@@ -32,7 +32,7 @@ Newly added code together with some older code to understand where the new code 
 
 ### 0.2 Technologies used
 
-The technologies that we will be using in this project is TypeScript for both backend and frontend, [React.js](https://react.dev/) for the frontend, and [Next.js](https://nextjs.org/docs) which is a React framework where you can create Server Side Rendered (SSR) application and Backend-For-Frontends (BFFs) smoothly.
+The technologies that we will be using in this project is TypeScript for both backend and frontend, [React.js](https://react.dev/) for the frontend, and [Next.js](https://nextjs.org/docs) which is a React framework where you can create Server Side Rendered (SSR) application and Backend-For-Frontends (BFFs) smoothly. For styling in the frontend we will use a utility based css library [Tailwindcss](https://tailwindcss.com/)
 
 ### 0.3 Download the repo and start the application
 
@@ -47,18 +47,47 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 # Frontend Path
 
-0. Vilka branches som finns
-   .- Att styling är fully optional men KUL
-   - Du kommer troligtvis inte "hinna klart" - för finns inget riktigt klart. Men för att få ut maximala av workshopen, hade jag rekommenderat att kanske inte lägga för mycket tid på stylingen.
-   - enhancements är småsaker som jag rekommenderar att gå tillbaka till men inte göra på första rundan
+This is the path for you who wants to dig deeper into the frontend world! To get started:
+
+1. Check out the `frontend` branch - this has already implemented all API endpoints, but lack the frontend components.
+
+Some tips to get maximal value out of the workshop:
+
+- Styling is FUN to add, but fully optional and up to you! However, we recommend to not put too much time on the styling to begin with.
+- `enhancements` sections are smaller detailes that should be skipped to begin with, but can return to if there is time at the end.
 
 ## 1. Present movie
 
-First task for us is to show a single movie. To do this, we will use a [React Component](TODO: add link).
+First task for us is to show a single movie. To do this, we will create a React component.
 
-> TODO: Information about react components
+> A [React Component](https://react.dev/learn/your-first-component#components-ui-building-blocks) is a UI building block, that can contain markup + logic and be reused in the application. The component can contain other components, _child components_, and will then consequently become a _parent component_. It is often (and in our case) written using [tsx](https://react.dev/learn/writing-markup-with-jsx#jsx-putting-markup-into-javascript) files, which lets you embed markup inside javascript.
 
-In `app/components/Movie.tsx` we have the component to use, which takes a `title` and `background` as props.
+In `app/components/Movie.tsx` we have the component to use, which takes a `title` and `background` as props. Let's dig in how it works!
+
+```
+type MovieProps = {
+  title: string;
+  backgroundImg: string;
+};
+```
+
+- This is the props you will be able to send to the component, defined by a name - `title` and `img`, and their corresponding type - both are of type `string`.
+
+> A [prop](https://react.dev/learn/passing-props-to-a-component) is how a parent component can pass information to a child component.
+
+```
+export const Movie = ({ title, backgroundImg }: MovieProps) => {
+  /*  */
+};
+```
+
+- This is the name of the React Component, and specifying that it takes props as type `MovieProps`.
+
+```
+  return <></>;
+```
+
+- As return value, we have the markup for the component. Here you can specify all normal html tags that you know of, such as `p` and `h1`.
 
 (Prepp) - En baskomponent med Syntax, som tar in en Movie.
 
@@ -71,16 +100,39 @@ In `app/components/Movie.tsx` we have the component to use, which takes a `title
 
 ### 1.1 Create your own MovieCard
 
-Time to be playful! Now is the time to create (and style) your own MovieCard. Let the creativity flow, but don't put too long time on it :)
+Time to be playful!
 
-- Vad är en react component? Vilka element?
-- CSS vs script vs HTML
-- Ta in props
-- Task: Visa upp Namn + bild + kanske rating?
+**Task**: Display the movie title and the img in the react component.
+
+To invoke javascript into the markup, you need to contain the variable in curly brackets, as:
+
+```
+  return (
+    <>
+      {myVariable}
+    </>
+  );
+```
+
+As told earlier, we are using Tailwind CSS for our styling (CSS).
+
+> [Tailwind CSS](https://tailwindcss.com/) is a utility based CSS framework, where you build up your stylings by adding multiple CSS classes to your markup, where each class only sets one thing, such as `m-8` sets a margin of `8px`.
+
+When styling html tags in React, we are using `className` instead of `class`. Example:
+
+```
+  return (
+    <div className="my-tailwind-class">
+      {myVariable}
+    </div>
+  );
+```
+
+Let the creativity flow with the styling, but don't put too much time on it :)
 
 ### 1.2 (Enhancements)
 
-- Accept and show description of movie, actors etc.
+- **Task**: Extend the props and MovieCard to also show a description and other attributes available in the `Movie` type.
 
 ## 2. Search for movie
 

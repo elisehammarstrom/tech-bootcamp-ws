@@ -2,14 +2,18 @@
 /* This is the props / attributes you will be able to send to the component*/
 type MovieProps = {
   title: string;
-  backgroundImg: string;
+  img: string;
 };
 
 /* This is the React component which will be rendered on your page */
-export const Movie = ({ title, backgroundImg }: MovieProps) => {
+export const MovieCard = ({ title, img }: MovieProps) => {
   /* title and background is now available to use within your component */
+
+  /* The render function returns the html to render */
   return <></>;
 };
+
+/* BELOW IN FINAL VERSION ONLY */
 
 /* This is the props / attributes you will be able to send to the component*/
 type MovieCardFinalProps = {
