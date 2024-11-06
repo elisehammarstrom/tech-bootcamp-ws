@@ -28,6 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* TODO INA - lägg till layoutstylingen här */}
         {children}
       </body>
     </html>

@@ -49,12 +49,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This is the path for you who wants to dig deeper into the frontend world! To get started:
 
-1. Check out the `frontend` branch - this has already implemented all API endpoints, but lack the frontend components.
-
 Some tips to get maximal value out of the workshop:
 
 - Styling is FUN to add, but fully optional and up to you! However, we recommend to not put too much time on the styling to begin with.
 - `enhancements` sections are smaller detailes that should be skipped to begin with, but can return to if there is time at the end.
+
+## 0. Getting stared Frontend path
+
+1. Check out the `frontend` branch - this has already implemented all API endpoints, but lack the frontend components.
+2. Fill in the .env file
+   // TODO: Fill in how they should use the env. file.
 
 ## 1. Present movie
 
@@ -132,22 +136,80 @@ Let the creativity flow with the styling, but don't put too much time on it :)
 
 ### 1.2 (Enhancements)
 
-- **Task**: Extend the props and MovieCard to also show a description and other attributes available in the `Movie` type.
+**Task**: Extend the props and MovieCard to also show a description and other attributes available in the `Movie` type.
 
 ## 2. Search for movie
 
 ... but wouldn't it be more fun if it was YOUR favorite movies that were shown here? Next part will allow us to search, and find, your faviourite movies!
 
+But first, let us understand the index page. In next, the file `app/page.tsx` is what is shown when you enter the `localhost:3000`
+
+```
+{movies.map((movie) => (
+  <MovieCard
+    title={movie.title}
+    backgroundImg={movie.img}
+    key={movie.imdbId}
+    isFavorite={movie.isFavorite}
+  />
+))}
+```
+
+- This part maps each example movie (of type `Movie`) to your own `MovieCard`.
+
 ### 2.1 Add UI components
 
 To be able to search, we need an input field and a button. This correspond to the html elements `input` and `button`
 
-Task: create a new component `InputFieldRow`, that contains an input field and a button. Style them as you wish.
+**Task:** Add an input field + button to `page.tsx`. Style them as you wish.
+
+TODO INA - ska detta vara en egen komponent med props? Kanske?
 
 ### 2.2 Search logic
 
-- Använda state i en komponent, spara inputvärdet i den.
-- Klicka på knappen, kalla på metoden "fetchMovies" // TODO: PREPPA!!!
+So how do we act based on what the user searches for?
+
+In React, when we want to share and maintain a value used between components close to each other, we can use the React built-in hook `useState`.
+
+> A [React hook](https://react.dev/learn#using-hooks) is like a tool that lets you add special features (like state and side effects) to your React components.
+
+The `useState` hook returns two variables - one that contains the value, and one that is a function that updates the state. It can be used like:
+
+```
+  const [myState, setMyState] = useState(0); // 0 is the initial value in the state
+  setMyState(2) /7 this sets 2 as the new value
+
+  return <div>{myState}</div> // Will display "2", and update once the state updates.
+```
+
+_note_: hooks needs to be called at the top of the React Component, like
+
+```
+export const MyComponent = () => {
+  const [myState, setMyState] = useState();
+  /* ... */
+  return <></>;
+}
+```
+
+**Task:** When the user writes in the input field, save the value in a state.
+
+To perform an action in code when the user performs an action, we can use the `onClick` attribute to buttons. `onClick` takes in a function, that is performed when the button is clicked, like:
+
+```
+  /* ... */
+  return <>
+    <button
+      type="button"
+      onClick={() => console.log('you are awesome!!')}
+      >
+      Click me
+    </button>
+  </>;
+
+```
+
+**Task:** When the user clicks on the search button, call the method `fetchMovies` with the input value. This is where we in the next step will fetch the movies!
 
 ### 2.3 Use BFF
 

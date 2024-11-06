@@ -6,6 +6,7 @@ This is the root folder, meaning that the route will be localhost:3000/
 import { useState } from "react";
 import MovieCard from "./components/MovieCard";
 import { Movie } from "./types/Movie";
+import { fetchMovies } from "./utils/fetchMovies";
 
 const defaultMovies: Movie[] = [
   {
@@ -15,91 +16,40 @@ const defaultMovies: Movie[] = [
     isFavorite: true,
   },
   {
-    imdbId: "2",
-    title: "My Movie",
-    img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
-  },
-  {
-    imdbId: "3",
-    title: "My Movie",
-    img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
-    isFavorite: true,
-  },
-  {
-    imdbId: "4",
-    title: "My Movie",
-    img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
-  },
-  {
-    imdbId: "5",
-    title: "My Movie",
-    img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
-  },
-];
-
-const searchMovies = [
-  {
-    title: "Notebook",
-    imdbId: "1",
-    img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
-  },
-  {
     title: "Notebook",
     imdbId: "2",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
-  },
-  {
-    title: "Notebook",
-    imdbId: "3",
-    img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
-  },
-  {
-    title: "Notebook",
-    imdbId: "4",
-    img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
-  },
-  {
-    title: "Notebook",
-    imdbId: "5",
-    img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
-  },
-  {
-    title: "Notebook",
-    imdbId: "6",
-    img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
+    isFavorite: false,
   },
 ];
 
 export default function Home() {
-  const [message, setMessage] = useState<Movie[]>([]);
   const [input, setInput] = useState("");
   const [movies, setMovies] = useState<Movie[]>(defaultMovies);
 
-  const onClick = async () => {
-    const response = await fetch("/api");
-    const data = await response.json();
-    console.log(data);
-    setMessage(data.data);
+  const onSearch = async () => {
+    const data = await fetchMovies(input);
+    setMovies(data);
   };
+
   return (
+    /* TODO: Make this to a background component.  */
     <div className="bg-rose-950  items-center justify-items-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 items-center sm:items-start">
-        {message.map((movie) => (
-          <MovieCard
-            title={movie.title}
-            backgroundImg={movie.img}
-            key={movie.imdbId}
-            isFavorite={movie.isFavorite}
-          />
-        ))}
-        <button onClick={onClick}>TRY TO CLICK ME</button>
+      <main className="flex flex-col gap-8 items-center">
         <div className="flex gap-4">
           <input
             type="text"
+            placeholder="Search for a movie..."
+            className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-700 focus:border-transparent color"
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />
-          <button onClick={() => setMovies(searchMovies)}> Search </button>
+          <button
+            className="px-4 py-2 text-white bg-pink-700 rounded-lg shadow-md hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+            onClick={onSearch}
+          >
+            Search
+          </button>
         </div>
         <div className="flex flex-wrap gap-4 max-w-m">
           {movies.map((movie) => (
@@ -113,5 +63,18 @@ export default function Home() {
         </div>
       </main>
     </div>
+    /* MAIN STARTER PAGE 
+      <AppContainer> // Component styling the background and general page 
+          <main className="flex flex-col gap-8 items-center">
+            {exampleMovies.map((movie) => (
+              <MovieCard
+                title={movie.title}
+                backgroundImg={movie.img}
+                key={movie.imdbId} \\ is needed in React when mapping items.
+              />
+            ))}
+        </main>
+      </AppContainer> 
+    */
   );
 }
