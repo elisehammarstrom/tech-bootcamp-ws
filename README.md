@@ -45,6 +45,10 @@ To start the application you need to run:
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### 0.4 Problems running the application?
+
+Make sure you have a node version >=18.18.0
+
 # Frontend Path
 
 This is the path for you who wants to dig deeper into the frontend world! To get started:
