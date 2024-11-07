@@ -64,6 +64,13 @@ Some tips to get maximal value out of the workshop:
 2. Fill in the .env file
    // TODO: Fill in how they should use the env. file.
 
+The available API endpoints are:
+
+- GET `/api/movies?title={}&userId={}`, where title is something to search movies on, and userId is your own name + first letter of last name. Returns list of type `Movie`
+
+-
+-
+
 ## 1. Present movie
 
 First task for us is to show a single movie. To do this, we will create a React component.
@@ -217,36 +224,39 @@ To perform an action in code when the user performs an action, we can use the `o
 
 ### 2.3 Use BFF
 
-Time to get some real data in your application!
-// TODO INA: write how to fetch from api + add endpoints
+Time to get some real data in your application! If you remember from the intro, this Next.js project also contains a Backend-For-Frontend. All `route.ts` files corresponds to an endpoint, where the path is given by the folder structure. For example `app/api/myPath/route.ts` corresponds to the endpoint `/api/myPath`.
 
-**Task:** Update the `fetchMovies` function so that it calls our api backend.
+> More documentation about Next.js routes found [here](https://nextjs.org/docs/app/building-your-application/routing/defining-routes).
 
-**Task:** The return value you get from `fetchMovies` and update the `movies` variable in `page.tsx`
+To fetch something from our frontend, we can use the method `fetch` which is available globally within all js applications, such as:
 
-// TODO Ina: remove once 2.3 is done
+```
+  const url = "yourUrl";
 
-- Connect towards our api (remind where it was located)
-- Connect using "fetch"
-- Put the response into our movies
+  const response = await fetch(url);
+  return await response.json();
+
+```
+
+**Task:** Update the `fetchMovies` function so that it calls our api backend instead of logging to the console. Hint: The available endpoints and what data to send are defined in the section "getting started". // TODO: Link to the getting started section.
+
+**Task:** Use the return value you get from `fetchMovies` and update the `movies` variable in `page.tsx`. Hint: How do we set state?
 
 ### 2.4 (Enhancements)
 
-a) Initial view
+Some enhancements to your page - but skip at first and go back to these if there is time available at the end :)
 
-- Do not want to show mock-movies from start, Instead please show text "search for your favourite movie"
+**a) Initial view**
 
-b) Loading state
+- Instead of showing static movies from the start, show a text "search for your favourite movie".
 
-- Takes time loading, we want a loading state.
+**b) Loading state**
+
+- To get some user feedback when search button has been pressed, add a new state that contains if the page is loading. If it is, show something in the UI for the user.
 
 ### 2.5 Celebration!
 
-Congrats for completing the first two steps and connecting frontend to the backend.
-
-// TODO:
-
-- Img of how Fe now calls BE and that is what we did :D
+Congrats for completing the first two steps and connecting frontend to the backend! Well done!!
 
 ## 3. Add to favorites
 

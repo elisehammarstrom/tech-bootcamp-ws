@@ -67,7 +67,7 @@ export default function Home() {
     /* MAIN STARTER PAGE 
       <AppContainer> // Component styling the background and general page 
           <main className="flex flex-col gap-8 items-center">
-            {exampleMovies.map((movie) => (
+            {movies.map((movie) => (
               <MovieCard
                 title={movie.title}
                 backgroundImg={movie.img}
