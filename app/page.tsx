@@ -8,6 +8,7 @@ import MovieCard from "./components/MovieCard";
 import { Movie } from "./types/Movie";
 import { fetchMovies } from "./utils/fetchMovies";
 
+// TODO: hide these in a "data" file
 const defaultMovies: Movie[] = [
   {
     title: "Titanic",
