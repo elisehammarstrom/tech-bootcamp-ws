@@ -217,6 +217,15 @@ To perform an action in code when the user performs an action, we can use the `o
 
 ### 2.3 Use BFF
 
+Time to get some real data in your application!
+// TODO INA: write how to fetch from api + add endpoints
+
+**Task:** Update the `fetchMovies` function so that it calls our api backend.
+
+**Task:** The return value you get from `fetchMovies` and update the `movies` variable in `page.tsx`
+
+// TODO Ina: remove once 2.3 is done
+
 - Connect towards our api (remind where it was located)
 - Connect using "fetch"
 - Put the response into our movies
@@ -234,6 +243,8 @@ b) Loading state
 ### 2.5 Celebration!
 
 Congrats for completing the first two steps and connecting frontend to the backend.
+
+// TODO:
 
 - Img of how Fe now calls BE and that is what we did :D
 
