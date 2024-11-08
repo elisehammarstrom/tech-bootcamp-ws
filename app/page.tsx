@@ -59,6 +59,7 @@ export default function Home() {
               backgroundImg={movie.img}
               key={movie.imdbId}
               isFavorite={movie.isFavorite}
+              imdbId={movie.imdbId}
             />
           ))}
         </div>

@@ -66,10 +66,11 @@ Some tips to get maximal value out of the workshop:
 
 The available API endpoints are:
 
-- GET `/api/movies?title={}&userId={}`, where title is something to search movies on, and userId is your own name + first letter of last name. Returns list of type `Movie`
+- GET `/api/movies?title={title}&userId={userId}`, where `title` is something to search movies on, and `userId` is your own name + first letter of last name. Returns list of type `Movie`.
 
--
--
+- GET `/users/{userId}/favorites`, Returns list of type `Movie`, which is the users movies marked as favorite.
+
+- POST `/users/{userId}/favorites/{movieId}`, the sent movie will be marked as favorite for user with id `userId`.
 
 ## 1. Present movie
 
@@ -264,9 +265,17 @@ Next step is to add the possibility to select favorite movies!
 
 ### 3.1 Favorite Icon
 
-- Knapp för att lägga till favoriter (IKON??)
-- extend movie type with isFavorite, and send that to card and display something depending on if favorite or not
-- HOW to use local assets
+In the `Movie` type, we have one attribute `isFavorite`, that that defines if you have marked this movie as favorite - this is something we can use in our Movie Cards when displaying the movie.
+
+> To use assets (images / icons etc) in Next.js, you need to add your picture to the `public` folder. once there, it will be available to use in `<img>` components by defining `<img src=/your-image-name.png`. You will likely be prompted to use a NextImage, but you can in this workshop just as well use normal `<img>` tag.
+
+**Task**: Add the prop `isFavorite` to your MovieCard.tsx component, and display in the card if the movie is your favorite or not.
+
+To not only display, but also be able to change the favorite status, we need a mechanism for that! To make it easier for you, we have prepared a method `addToFavorites` that adds a movie to the favorites. Feel free to have a look at the implementation!
+
+// TODO: Refactor userId så att de får skriva den på en configställe.
+
+**Task**: Add a button to your MovieCard, that on click, calls the method `addToFavorites` with the `imdbId`. Give the user some feedback that favorite has been added.
 
 ### 3.2 Toggle favorite on change
 

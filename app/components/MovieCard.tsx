@@ -1,4 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+
+import { addFavoriteMovie } from "../utils/addFavoriteMovie";
+
 /* This is the props / attributes you will be able to send to the component*/
 type MovieProps = {
   title: string;
@@ -18,6 +21,7 @@ export const MovieCard = ({ title, img }: MovieProps) => {
 /* This is the props / attributes you will be able to send to the component*/
 type MovieCardFinalProps = {
   title: string;
+  imdbId: string;
   backgroundImg: string;
   isFavorite?: boolean;
   /* onFavoriteClick: () => void; */
@@ -27,8 +31,14 @@ type MovieCardFinalProps = {
 const MovieCardFinal = ({
   title,
   backgroundImg,
+  imdbId,
   isFavorite = false,
 }: MovieCardFinalProps) => {
+  const toggleFavorite = () => {
+    if (!isFavorite) {
+      addFavoriteMovie(imdbId);
+    }
+  };
   return (
     <div className="relative h-[var(--imgHeight)] w-[var(--imgWidth)]">
       <img
@@ -37,7 +47,7 @@ const MovieCardFinal = ({
         className="w-[var(--imgWidth)] h-[var(--imgHeight)] rounded-[var(--border-radius)] absolute top-0 right-0"
       />
       <div className="rounded-[var(--border-radius)] absolute w-full h-full bg-gradient-to-b from-[rgba(33,33,33,0.2)] to-[rgba(0,0,0,1)] text-white flex flex-col p-3 box-border ">
-        <button>
+        <button onClick={toggleFavorite}>
           <img
             className="mt-auto"
             src={isFavorite ? "/fav-checked.png" : "/fav-unchecked.png"}
