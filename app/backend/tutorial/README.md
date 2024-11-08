@@ -71,7 +71,7 @@ during the workshop.
 
 ```markdown
 # DB CONNECTION
-DATABASE_URL=postgresql://<firstname>.<lastname>:<password>@34.38.7.50:5432/postgres
+DATABASE_URL=postgresql://<your-firstname>.<first-letter-of-your-last-name>:<password>@34.38.7.50:5432/postgres
 ```
 To test your database connection, you can run Visma Studio with the command:
 ```bash
@@ -102,16 +102,22 @@ GET api/users/{id}
 ```
 Open a new terminal and try curling the endpoint with your own id:
 ```bash
-curl -X GET http://localhost:3000/api/users/<your-firstname>.<your-lastname>
+curl -X GET http://localhost:3000/api/users/<your-firstname>.<first-letter-of-your-last-name>
 ```
 This should return a user object with your name
 ```bash
-{"user":{"id":<your-firstname>.<your-lastname>}}
+{"user":{"id":<your-firstname>.<first-letter-of-your-last-name>}}
 ```
 Now everything seems to work and we are ready to start coding! 🚀
 
 # 3. Searching for movie titles
 We want to be able to search for movie titles in the frontend and display the search results.
+First, make sure your server is still running, and go to `http://localhost:3000` in your browser.
+There you will see a search field where you can search for movies. Try searching for a movie title, and you will see
+that the search results are empty. This is because we have not yet implemented the search functionality in the backend.
+Let's go!
+// TODO: Add image of search field not working in frontend
+
 ## 3.1 What is a RESTful search endpoint
 A RESTful search endpoint is designed to allow clients to search or filter resources based on query parameters, 
 typically using the `GET` HTTP method. Our resource in this case, is movies, and we want to search using partial
@@ -148,12 +154,9 @@ export async function GET(request: Request): Promise<NextResponse> {
 To verify that the endpoint works, we can `curl` it in the terminal. Make sure you still have your 
 server running, and call the endpoint using
 ```bash
-curl -X GET http://localhost:3000/api/movies?title=star
+curl -X GET http://localhost:3000/api/movies?title=star&userId=<your-firstname>.<first-letter-of-your-last-name>
 ```
-this should return a response
-``` bash 
-{"partialTitle":"star"}
-```
+this should return a list of movies with the word "star" in the title.
 
 ## 3.3 Browse the OMDB API
 Since we will get the movies from the OMDB API, we need to search for movies in their API. 
@@ -170,11 +173,10 @@ search for several partial matches instead. We will use this.
 Now when we know what endpoint we should call, we create a client in our backend that fetches 
 movie titles from the OMDB API. 
 
-### 3.4.1 Adding types
+### 3.4.1 Types
 Since we are using TypeScript, we have the advantage of being able to type the response from the OMDB API.
-This helps us catch errors early and makes the code easier to read. We
-can create a type `OmdbMovie` representing the movie object that we get from the OMDB API.
-Create the file `OmdbApiMovie.ts` in the `omdb/types` directory.
+This helps us catch errors early and makes the code easier to read. We have already
+created a type `OmdbMovie` representing the movie object that we get from the OMDB API.
 ```typescript
 export type OmdbMovie = {
     "Title": string;
@@ -184,7 +186,7 @@ export type OmdbMovie = {
     "Poster": string;
 }
 ```
-Also create a type `OmdbSearchResponse` in the same directory representing the response from the OMDB API.
+We also have a type `OmdbSearchResponse` in the same directory representing the response from the OMDB API.
 ```typescript
 import {OmdbMovie} from "@/app/types/omdb/OmdbMovie";
 
@@ -194,99 +196,120 @@ export type OmdbSearchResponse = {
     Response: string;         // "True" if the request was successful, otherwise "False"
 }
 ```
-Also create a type `MovieDto` in the types directory representing the movie object that will e sent to the frontend.
+We also have create a type `Movie` representing the movie object that will e sent to the frontend.
 ```typescript
-export type MovieDto = {
+export type Movie = {
     /* Feel free to add more - så kan de själva välja i FE hur mycket detaljer de vill visa upp */
     imdbId: string;
     title: string;
     img: string;
     userId: string;
-    isFavorite?: boolean;
+    isFavorite: boolean;
 };
 ```
-DTO stands for Data Transfer Object, and is a design pattern used to transfer data between software application subsystems.
-Last of all, we create a class `Movie` in `api/movies` that will be used to represent the movie object in the backend.
+This is what we call a DTO which stands for Data Transfer Object. It is a design pattern used to transfer 
+data between software application subsystems. Last of all, we create a class `InternalMovie` in `api/movies` 
+that will be used to represent the movie object in the backend.
 ```typescript
-import {OmdbMovie} from "@/app/types/omdb/OmdbMovie";
-import {MovieDto} from "@/app/types/MovieDto";
+export class InternalMovie {
+  private _id: string;
+  private _imdbId: string;
+  private title: string;
+  private img: string;
 
-export class Movie {
-    private imdbId: string;
-    private title: string;
-    private img: string;
+  constructor(id: string, imdbId: string, title: string, img: string) {
+    this._id = id;
+    this._imdbId = imdbId;
+    this.title = title;
+    this.img = img;
+  }
 
-    constructor(imdbId: string, title: string, img: string) {
-        this.imdbId = imdbId;
-        this.title = title;
-        this.img = img;
-    }
+  get id(): string | null {
+    return this._id;
+  }
 
-    static from(omdbMovie: OmdbMovie): Movie {
-        return new Movie(
+  get imdbId(): string | null {
+    return this._imdbId;
+  }
+
+  static fromOmdbMovie(omdbMovie: OmdbMovie): InternalMovie {
+    return new InternalMovie(
+            "",
             omdbMovie.imdbID,
             omdbMovie.Title,
             omdbMovie.Poster
-        );
-    }
+    );
+  }
 
-    public toDto(): MovieDto {
-        return {
-            imdbId: this.imdbId,
-            title: this.title,
-            img: this.img,
-            isFavorite: false,
-            userId: ""
-        }
+  static fromEntity(movieEntity: MovieEntity): InternalMovie {
+    return new InternalMovie(
+            movieEntity.id,
+            movieEntity.imdb_id,
+            movieEntity.title,
+            movieEntity.img
+    );
+  }
+
+  public toDto(isFavorite: boolean): Movie {
+    return {
+      imdbId: this._imdbId,
+      title: this.title,
+      img: this.img,
+      isFavorite: isFavorite
     }
+  }
 }
+
 ```
 It has a static factory method `from`which takes an `OmdbMovie` object and returns a `Movie` instance. 
 This keeps transformation logic encapsulated within the `Movie` class, meaning that if the `OmdbMovie`
-structure changes, you only need to update this method. The `toDto` method returns a `MovieDto` object
+structure changes, you only need to update this method. The `toDto` method returns a `Movie` object
 customized for the frontend where extra parameters specific for the calling user will be included. 
 
 ### 3.4.2 Create the omdbClient file
-Create a separate class `OmdbClient` in `api/movies/omdbClient.ts`. Add a search method that fetches movies
-and return a `OmdbSearchResponse`.
+We have a separate class `OmdbClient` in `api/movies/omdbClient.ts` which will be responsible
+for all communication with the OMDB API. In this class we will add a search-method that 
+fetches movies and returns a `OmdbSearchResponse` using axios. Axios is a promise-based 
+HTTP client for the browser and node.js.
 ```typescript
 import axios from 'axios';
 import {OmdbSearchResponse} from "@/app/types/omdb/OmdbSearchResponse";
 
 class OmdbClient {
-    private readonly apiKey: string;
-    private readonly baseUrl: string;
+  private readonly apiKey: string;
+  private readonly baseUrl: string;
 
-    constructor() {
-        const apiKey = process.env.OMDB_API_KEY || '';
-        const baseUrl = process.env.OMDB_BASE_URL || '';
-        if (!apiKey) {
-            throw new Error('OMDb API key not provided. Set the OMDB_API_KEY environment variable in .env.');
-        } else if (!baseUrl) {
-            throw new Error('OMDb API URL not provided. Set the OMDB_API_URL environment variable in .env.');
-        }
-        this.apiKey = apiKey;
-        this.baseUrl = baseUrl;
+  constructor() {
+    const apiKey = process.env.OMDB_API_KEY || '';
+    const baseUrl = process.env.OMDB_BASE_URL || '';
+    if (!apiKey) {
+      throw new Error('OMDb API key not provided. Set the OMDB_API_KEY environment variable in .env.');
+    } else if (!baseUrl) {
+      throw new Error('OMDb API URL not provided. Set the OMDB_API_URL environment variable in .env.');
     }
-    
-    async searchByTitle(title: string): Promise<OmdbSearchResponse> {
-        try {
-            const response = await axios.get(this.baseUrl, {
-                params: {
-                    s: title,
-                    apikey: this.apiKey,
-                },
-            });
-            if (response.data && response.data.Response === 'True') {
-                return response.data;
-            } else {
-                return {} as OmdbSearchResponse;
-            }
-        } catch (error) {
-            console.error('Error fetching movie by title from OMDb:', error);
-            throw new Error('Failed to fetch movie from OMDb');
-        }
+    this.apiKey = apiKey;
+    this.baseUrl = baseUrl;
+  }
+  
+  /* <--------------- Add this method ---------------> */
+  async searchByTitle(title: string): Promise<OmdbSearchResponse> {
+    try {
+      const response = await axios.get(this.baseUrl, {
+        params: {
+          s: title,
+          apikey: this.apiKey,
+        },
+      });
+      if (response.data && response.data.Response === 'True') {
+        return response.data;
+      } else {
+        return {} as OmdbSearchResponse;
+      }
+    } catch (error) {
+      console.error('Error fetching movie by title from OMDb:', error);
+      throw new Error('Failed to fetch movie from OMDb');
     }
+  }
 }
 
 export const omdbClient = new OmdbClient();
@@ -361,8 +384,17 @@ export async function POST(request: NextRequest, context: { params: { userId: st
   return NextResponse.json({ }, { });
 }
 ``` 
+## Feedback 
+We are super-interested in any feedback you might have on this workshop. 
+Please reach out to us personally on anyone from Talent Search to provide 
+your feedback. Looking forward to hearing from you!
 
+## Future work
+If you want to continue working on this project outside of this project,
+we suggest you exchange the cloud database with a local database. 
+We suggest running a PostgreSQL database in a docker container locally
+using docker desktop. You can find the docker image for PostgreSQL at
+[hub.docker.com](https://hub.docker.com/_/postgres).
+Then configure your .env file `DATABASE_URL` to point to your local database.
 
-
-
-
+Good luck with your project! 🚀
