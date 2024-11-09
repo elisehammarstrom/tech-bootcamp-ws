@@ -9,7 +9,7 @@
 To easily follow this Workshop and README file, the README is structured according to a few conventions.
 
 - Code and file names are written like `CodeExample`.
-- Larger code parts are written as below, with the name of the vialbe file is included at the top after two `//`
+- Larger code parts are written as below, with the name of the viable file is included at the top after two `//`
 
 ```
 // File Name
@@ -61,8 +61,9 @@ Some tips to get maximal value out of the workshop:
 ## 0. Getting stared Frontend path
 
 1. Check out the `frontend` branch - this has already implemented all API endpoints, but lack the frontend components.
-2. Fill in the .env file
-   // TODO: Fill in how they should use the env. file.
+2. Fill in the .env file // TODO: Fill in how they should use the .env file.
+
+> The .env file is used to store environment variables that configure your application, such as API keys and database URLs. These variables are loaded at runtime and help keep sensitive information secure and separate from your codebase.
 
 The available API endpoints are:
 
@@ -104,6 +105,14 @@ export const Movie = ({ title, backgroundImg }: MovieProps) => {
 ```
 
 - As return value, we have the markup for the component. Here you can specify all normal html tags that you know of, such as `p` and `h1`.
+
+```
+// MovieList
+
+movieList.map(movie => {
+  return <movieCardComponet name="movie.title" />
+}
+```
 
 (Prepp) - En baskomponent med Syntax, som tar in en Movie.
 
