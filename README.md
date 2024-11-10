@@ -36,7 +36,7 @@ The technologies that we will be using in this project is TypeScript for both ba
 
 ### 0.3 Download the repo and start the application
 
-If you haven't already, please download the repo from [TODO INSERT LINK]
+If you haven't already, please download the repo from [Github](https://github.com/LovreB/tech-bootcamp-ws)
 
 To start the application you need to run:
 
