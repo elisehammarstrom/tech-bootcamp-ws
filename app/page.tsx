@@ -78,18 +78,5 @@ export default function Home() {
         </MovieCardGrid>
       )}
     </>
-    /* MAIN STARTER PAGE 
-      <AppContainer> // Component styling the background and general page 
-          <main className="flex flex-col gap-8 items-center">
-            {movies.map((movie) => (
-              <MovieCard
-                title={movie.title}
-                backgroundImg={movie.img}
-                key={movie.imdbId} \\ is needed in React when mapping items.
-              />
-            ))}
-        </main>
-      </AppContainer> 
-    */
   );
 }

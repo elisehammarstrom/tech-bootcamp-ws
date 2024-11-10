@@ -1,28 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-
 import { useState } from "react";
 import { addFavorite } from "../data/addFavorite";
 import { removeFavorite } from "../data/removeFavorite";
 
 /* This is the props / attributes you will be able to send to the component*/
-type MovieProps = {
-  title: string;
-  img: string;
-};
-
-/* This is the React component which will be rendered on your page */
-export const MovieCard = ({ title, img }: MovieProps) => {
-  /* title and background is now available to use within your component */
-
-  /* The render function returns the html to render */
-  return <></>;
-};
-
-/* BELOW IN FINAL VERSION ONLY */
-
-/* This is the props / attributes you will be able to send to the component*/
-type MovieCardFinalProps = {
+type MovieCardProps = {
   title: string;
   imdbId: string;
   backgroundImg: string;
@@ -31,15 +14,13 @@ type MovieCardFinalProps = {
 };
 
 /* This is the React component which will be rendered on your page */
-const MovieCardFinal = ({
+const MovieCard = ({
   title,
   backgroundImg,
   imdbId,
   isFavorite = false,
-}: MovieCardFinalProps) => {
+}: MovieCardProps) => {
   const [showFavorite, setShowFavorite] = useState(isFavorite);
-
-  /* TODO: Await here and show error message if failing */
 
   const toggleFavorite = () => {
     if (!showFavorite) {
@@ -49,6 +30,7 @@ const MovieCardFinal = ({
     }
     setShowFavorite(!showFavorite);
   };
+
   return (
     <div className="relative h-[var(--imgHeight)] w-[var(--imgWidth)]">
       <img
@@ -67,8 +49,7 @@ const MovieCardFinal = ({
         <h3 className="mt-auto">{title}</h3>
       </div>
     </div>
-    /* In final, justera CSSen så den inte är så kaos, och lägg till rad med typ rating, år, skådespelare?? genre?? */
   );
 };
 
-export default MovieCardFinal;
+export default MovieCard;
