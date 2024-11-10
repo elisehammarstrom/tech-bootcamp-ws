@@ -322,15 +322,7 @@ But for it to be a favorites page, we need to add favorites, right?
 
 ### 4.4 Celebration!
 
-Now you have completed the "main" part of this workshop - congratulations! Either go back and do the enhancements, or challenge yourself with improving the responsiveness or A11y which you can read about in the steps below!
-
-### 5. Responsivenes
-
-- When creating lite info om hur man kan göra saker responsivt, och låt dem gå lösa.
-
-### 6. Accessibility (A11y)
-
-- Lite info om a11y och varför det är viktigt, och låt den gå lösa.
+Now you have completed the "main" part of this workshop - congratulations! Either go back and do the enhancements, or challenge yourself with improving the [responsiveness](https://www.w3schools.com/html/html_responsive.asp) or [A11y](https://developer.mozilla.org/en-US/docs/Web/Accessibility) - two very important aspects for a frontend engineer!
 
 ## Backend Path
 
