@@ -186,7 +186,7 @@ To be able to search, we need an input field and a button. This correspond to th
 
 **Task:** Add an input field + button to `page.tsx`. Style them as you wish.
 
-TODO INA - ska detta vara en egen komponent med props? Kanske?
+> In Next.js, there is a concept called [Layouts](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates), which allows us to keep layout and state if route changes - for performance, but also handy for UI cohesiveness. In the top layout file, `layout.tsx`, one can specify styling that is to be applied to all pages. In out `layout.tsx`, for example we have specified the purple background color, given by the tailwind class `bg-rose-950` - feel free to change it!
 
 ### 2.2 Search logic
 

@@ -8,6 +8,7 @@ import MovieCard from "./components/MovieCard";
 import { Movie } from "./types/Movie";
 import { getMovies } from "./data/getMovies";
 import MovieCardGrid from "./components/MovieCardGrid";
+import Link from "next/link";
 
 const defaultMovies: Movie[] = [
   {
@@ -27,10 +28,15 @@ const defaultMovies: Movie[] = [
 export default function Home() {
   const [input, setInput] = useState("");
   const [movies, setMovies] = useState<Movie[]>(defaultMovies);
+  const [error, setError] = useState("");
 
   const onSearch = async () => {
-    const data = await getMovies(input);
-    setMovies(data);
+    try {
+      const data = await getMovies(input);
+      setMovies(data);
+    } catch (err) {
+      setError("Failed to fetch movies");
+    }
   };
 
   return (
@@ -55,17 +61,22 @@ export default function Home() {
           Search
         </button>
       </div>
-      <MovieCardGrid>
-        {movies.map((movie) => (
-          <MovieCard
-            title={movie.title}
-            backgroundImg={movie.img}
-            key={movie.imdbId}
-            isFavorite={movie.isFavorite}
-            imdbId={movie.imdbId}
-          />
-        ))}
-      </MovieCardGrid>
+      <Link href={"/favorites"}>Go to my favorites</Link>
+      {error ? (
+        <p className="text-red-500">{error}</p>
+      ) : (
+        <MovieCardGrid>
+          {movies.map((movie) => (
+            <MovieCard
+              title={movie.title}
+              backgroundImg={movie.img}
+              key={movie.imdbId}
+              isFavorite={movie.isFavorite}
+              imdbId={movie.imdbId}
+            />
+          ))}
+        </MovieCardGrid>
+      )}
     </>
     /* MAIN STARTER PAGE 
       <AppContainer> // Component styling the background and general page 

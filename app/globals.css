@@ -22,9 +22,17 @@ body {
   --imgWidthMobile: 100px;
   --imgHeightMobile: 150px;
   --border-radius: 0.5em;
+  font-family: var(--font-geist-mono);
 }
 
 h1 {
   color: var(--foreground);
-  font-size: 2rem;
+  font-size: 1.75rem;
+}
+
+a {
+  text-decoration: underline;
+}
+a:hover {
+  font-weight: 500;
 }

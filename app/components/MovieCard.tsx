@@ -39,6 +39,8 @@ const MovieCardFinal = ({
 }: MovieCardFinalProps) => {
   const [showFavorite, setShowFavorite] = useState(isFavorite);
 
+  /* TODO: Await here and show error message if failing */
+
   const toggleFavorite = () => {
     if (!showFavorite) {
       addFavorite(imdbId);
