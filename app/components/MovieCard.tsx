@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 
-import { addFavoriteMovie } from "../data/addFavoriteMovie";
+import { useState } from "react";
+import { addFavorite } from "../data/addFavorite";
+import { removeFavorite } from "../data/removeFavorite";
 
 /* This is the props / attributes you will be able to send to the component*/
 type MovieProps = {
@@ -34,10 +37,15 @@ const MovieCardFinal = ({
   imdbId,
   isFavorite = false,
 }: MovieCardFinalProps) => {
+  const [showFavorite, setShowFavorite] = useState(isFavorite);
+
   const toggleFavorite = () => {
-    if (!isFavorite) {
-      addFavoriteMovie(imdbId);
+    if (!showFavorite) {
+      addFavorite(imdbId);
+    } else {
+      removeFavorite(imdbId);
     }
+    setShowFavorite(!showFavorite);
   };
   return (
     <div className="relative h-[var(--imgHeight)] w-[var(--imgWidth)]">
@@ -50,7 +58,7 @@ const MovieCardFinal = ({
         <button onClick={toggleFavorite}>
           <img
             className="mt-auto h-8 w-8 hover:opacity-80"
-            src={isFavorite ? "/fav-checked.png" : "/fav-unchecked.png"}
+            src={showFavorite ? "/fav-checked.png" : "/fav-unchecked.png"}
             alt=""
           />
         </button>

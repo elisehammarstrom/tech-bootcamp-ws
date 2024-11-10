@@ -73,6 +73,8 @@ The available API endpoints are:
 
 - POST `/users/{userId}/favorites/{movieId}`, the sent movie will be marked as favorite for user with id `userId`.
 
+In `types/Movie.ts` we have the `Movie` type, which we will use througout the project - please have a look!
+
 ## 1. Present movie
 
 First task for us is to show a single movie. To do this, we will create a React component.
@@ -281,8 +283,6 @@ In the `Movie` type, we have one attribute `isFavorite`, that that defines if yo
 **Task**: Add the prop `isFavorite` to your MovieCard.tsx component, and display in the card if the movie is your favorite or not.
 
 To not only display, but also be able to change the favorite status, we need a mechanism for that! To make it easier for you, we have prepared a method `addToFavorites` which calls the api endpoint `/users/{userId}/favorites/{movieId}` that adds a movie to the favorites. Feel free to have a look at the implementation!
-
-// TODO: Refactor userId så att de får skriva den på en configställe.
 
 **Task**: Add a button to your MovieCard, that on click, calls the method `addToFavorites` with the `imdbId`. Give the user some feedback that favorite has been added.
 

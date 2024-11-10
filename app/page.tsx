@@ -9,17 +9,16 @@ import { Movie } from "./types/Movie";
 import { getMovies } from "./data/getMovies";
 import MovieCardGrid from "./components/MovieCardGrid";
 
-// TODO: hide these in a "data" file
 const defaultMovies: Movie[] = [
   {
     title: "Titanic",
-    imdbId: "1",
+    imdbId: "tt0120338",
     img: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg",
     isFavorite: true,
   },
   {
     title: "Notebook",
-    imdbId: "2",
+    imdbId: "tt0332280",
     img: "https://m.media-amazon.com/images/M/MV5BZjE0ZjgzMzYtMTAxYi00NGMzLThmZDktNzFlMzA2MWRmYWQ0XkEyXkFqcGc@._V1_SX300.jpg",
     isFavorite: false,
   },
@@ -36,7 +35,7 @@ export default function Home() {
 
   return (
     /* TODO: Make this to a background component.  */
-    <div className="bg-rose-950  items-center justify-items-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="bg-rose-950 items-center justify-items-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 items-center">
         <div className="flex gap-4">
           <input
@@ -45,6 +44,11 @@ export default function Home() {
             className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-700 focus:border-transparent text-gray-800"
             value={input}
             onChange={(event) => setInput(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                onSearch();
+              }
+            }}
           />
           <button
             className="px-4 py-2 text-white bg-pink-700 rounded-lg shadow-md hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"

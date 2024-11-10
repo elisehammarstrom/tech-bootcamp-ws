@@ -1,6 +1,10 @@
 /* A component rendering its children in a grid */
 export const MovieCardGrid = ({ children }: React.PropsWithChildren) => {
-  return <div className="flex flex-wrap gap-4 max-w-m">{children}</div>;
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-m">
+      {children}
+    </div>
+  );
   /* TODO: Actually do this in a grid */
 };
 

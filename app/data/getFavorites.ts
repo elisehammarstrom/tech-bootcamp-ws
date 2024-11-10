@@ -5,5 +5,6 @@ import { fetchEndpoint } from "./fetchEndpoint";
  * The available endpoins are found in the documentation */
 export const getFavorites = async (): Promise<Movie[]> => {
   const url = `/api/users/${process.env.NEXT_PUBLIC_USERNAME}/favorites`;
-  return fetchEndpoint(url);
+  const user = await fetchEndpoint<{ favoriteMovies: Movie[] }>(url);
+  return user.favoriteMovies;
 };
