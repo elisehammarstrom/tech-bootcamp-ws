@@ -326,15 +326,11 @@ Now you have completed the "main" part of this workshop - congratulations! Eithe
 
 ### 5. Responsivenes
 
-- lite info om hur man kan göra saker responsivt, och låt dem gå lösa.
+- When creating lite info om hur man kan göra saker responsivt, och låt dem gå lösa.
 
 ### 6. Accessibility (A11y)
 
 - Lite info om a11y och varför det är viktigt, och låt den gå lösa.
-
-### 7. Fördjupande länkar
-
-- Next.js, Styled components, etc.
 
 ## Backend Path
 

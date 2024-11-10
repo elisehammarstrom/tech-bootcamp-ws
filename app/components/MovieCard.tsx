@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { addFavoriteMovie } from "../utils/addFavoriteMovie";
+import { addFavoriteMovie } from "../data/addFavoriteMovie";
 
 /* This is the props / attributes you will be able to send to the component*/
 type MovieProps = {
@@ -49,7 +49,7 @@ const MovieCardFinal = ({
       <div className="rounded-[var(--border-radius)] absolute w-full h-full bg-gradient-to-b from-[rgba(33,33,33,0.2)] to-[rgba(0,0,0,1)] text-white flex flex-col p-3 box-border ">
         <button onClick={toggleFavorite}>
           <img
-            className="mt-auto"
+            className="mt-auto h-8 w-8 hover:opacity-80"
             src={isFavorite ? "/fav-checked.png" : "/fav-unchecked.png"}
             alt=""
           />

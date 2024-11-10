@@ -6,7 +6,8 @@ This is the root folder, meaning that the route will be localhost:3000/
 import { useState } from "react";
 import MovieCard from "./components/MovieCard";
 import { Movie } from "./types/Movie";
-import { fetchMovies } from "./utils/fetchMovies";
+import { getMovies } from "./data/getMovies";
+import MovieCardGrid from "./components/MovieCardGrid";
 
 // TODO: hide these in a "data" file
 const defaultMovies: Movie[] = [
@@ -29,7 +30,7 @@ export default function Home() {
   const [movies, setMovies] = useState<Movie[]>(defaultMovies);
 
   const onSearch = async () => {
-    const data = await fetchMovies(input);
+    const data = await getMovies(input);
     setMovies(data);
   };
 
@@ -41,7 +42,7 @@ export default function Home() {
           <input
             type="text"
             placeholder="Search for a movie..."
-            className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-700 focus:border-transparent color"
+            className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-700 focus:border-transparent text-gray-800"
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />
@@ -52,7 +53,7 @@ export default function Home() {
             Search
           </button>
         </div>
-        <div className="flex flex-wrap gap-4 max-w-m">
+        <MovieCardGrid>
           {movies.map((movie) => (
             <MovieCard
               title={movie.title}
@@ -62,7 +63,7 @@ export default function Home() {
               imdbId={movie.imdbId}
             />
           ))}
-        </div>
+        </MovieCardGrid>
       </main>
     </div>
     /* MAIN STARTER PAGE 
