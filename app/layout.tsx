@@ -28,8 +28,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* TODO INA - lägg till layoutstylingen här */}
-        {children}
+        <main className="bg-rose-950 items-center flex flex-col gap-8 items-center min-h-screen p-8 pb-20 sm:p-20">
+          {/* TODO INA - lägg till layoutstylingen här */}
+          {children}
+        </main>
       </body>
     </html>
   );
