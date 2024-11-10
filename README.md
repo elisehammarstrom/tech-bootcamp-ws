@@ -163,7 +163,7 @@ Let the creativity flow with the styling, but don't put too much time on it :)
 
 ... but wouldn't it be more fun if it was YOUR favorite movies that were shown here? Next part will allow us to search, and find, your faviourite movies!
 
-But first, let us understand the index page. In next, the file `app/page.tsx` is what is shown when you enter the `localhost:3000`
+But first, let us understand the index page. In Next.js, the file `app/page.tsx` is what is shown when you enter the `localhost:3000`
 
 ```
 {movies.map((movie) => (
@@ -280,13 +280,15 @@ In the `Movie` type, we have one attribute `isFavorite`, that that defines if yo
 
 **Task**: Add the prop `isFavorite` to your MovieCard.tsx component, and display in the card if the movie is your favorite or not.
 
-To not only display, but also be able to change the favorite status, we need a mechanism for that! To make it easier for you, we have prepared a method `addToFavorites` that adds a movie to the favorites. Feel free to have a look at the implementation!
+To not only display, but also be able to change the favorite status, we need a mechanism for that! To make it easier for you, we have prepared a method `addToFavorites` which calls the api endpoint `/users/{userId}/favorites/{movieId}` that adds a movie to the favorites. Feel free to have a look at the implementation!
 
 // TODO: Refactor userId så att de får skriva den på en configställe.
 
 **Task**: Add a button to your MovieCard, that on click, calls the method `addToFavorites` with the `imdbId`. Give the user some feedback that favorite has been added.
 
-### 3.2 Toggle favorite on change
+### 3.2 Toggle favorite on change (Enhancements?? )
+
+TODO.
 
 - add icon in button
 - onClick, send to new endpoint. Id is the payload.
@@ -294,28 +296,33 @@ To not only display, but also be able to change the favorite status, we need a m
 
 ## 4. Show favorites
 
-Lastly, we want to be able to show our own favouries!
+Lastly, we want to be able to show our own favouries on a new page!
 
 ### 4.1 Add new route
 
-Firstly, we want to create a new page where we display our favorites.
+To create a new page with Next.js, we need to create another `page.tsx` file. You might remember that in Next.js, the file `app/page.tsx` is what is shown when you enter the `localhost:3000`. It is due to that the route depends on where in the folder structure is placed, so that a `page.tsx` placed under `app/foo/boo/page.tsx` would correspond to the page `localhost:3000/foo/boo` This is just like the API endpoint depends on where the `route.ts` is located.
 
-- Ny route? /my-favorites
-- Link to route from home page. `<a>` link.
-- Title "My favorites"
+**Task**: Create a new page `localhost:3000/favorites` that displays a title "My Favorites".
 
 ### 4.2 Fetch and show your favorites
 
-- Hämta alla favoriter med getFavourites, och visa upp dem i ditt MovieGrid
-- Utöka movieGrid item med information om hur många favoritmarkeringar de har.
+But for it to be a favorites page, we need to add favorites, right?
+
+**Task**: Fetch all your favorites, and show them in your MovieCards.
 
 ### 4.3 (Enhancements)
 
-- Loading symbol
+**a) Link to pages**
+
+- For easy access to your favorites page, link to it from your home page. Hint: the [anchor HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), `<a>` tag, is used for linking to other pages.
+
+**b) Loading state**
+
+- Add a loading symbol when the movies are loading
 
 ### 4.4 Celebration!
 
-Now you have completed the "main" part of this workshop - congratulations! Either go back and do the extension, or challenge yourself with improving the responsiveness or A11y which you can read about in the steps below!
+Now you have completed the "main" part of this workshop - congratulations! Either go back and do the enhancements, or challenge yourself with improving the responsiveness or A11y which you can read about in the steps below!
 
 ### 5. Responsivenes
 
