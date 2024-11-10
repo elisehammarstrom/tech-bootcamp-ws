@@ -61,7 +61,13 @@ Some tips to get maximal value out of the workshop:
 ## 0. Getting stared Frontend path
 
 1. Check out the `frontend` branch - this has already implemented all API endpoints, but lack the frontend components.
-2. Fill in the .env file // TODO: Fill in how they should use the .env file.
+2. Rename the `.env.sample` file to `.env`, and fill in the values as follows:
+
+- _OMDB_API_KEY_ - the api key you have retrieved from OMDB
+- _DATABASE_URL_ - Set db url as postgresql://yourFirstname.yourLastname:password.38.7.50:5432/postgres, where password will be retrieved in the workshop.
+- _NEXT_PUBLIC_USERNAME_ - set username as yourFirstname.yourLastname
+
+Password will be retrieved in the workshop.
 
 > The .env file is used to store environment variables that configure your application, such as API keys and database URLs. These variables are loaded at runtime and help keep sensitive information secure and separate from your codebase.
 
