@@ -5,7 +5,6 @@ export const MovieCardGrid = ({ children }: React.PropsWithChildren) => {
       {children}
     </div>
   );
-  /* TODO: Actually do this in a grid */
 };
 
 export default MovieCardGrid;

@@ -250,7 +250,7 @@ To fetch something from our frontend, we can use the method `fetch` which is ava
 
 ```
 
-**Task:** Update the `fetchMovies` function so that it calls our api backend instead of logging to the console. Hint: The available endpoints and what data to send are defined in the section "getting started". // TODO: Link to the getting started section.
+**Task:** Update the `fetchMovies` function so that it calls our api backend instead of logging to the console. Hint: The available endpoints and what data to send are defined in the section [Getting Started](#0-getting-stared-frontend-path).
 
 **Task:** Use the return value you get from `fetchMovies` and update the `movies` variable in `page.tsx`. Hint: How do we set state?
 
