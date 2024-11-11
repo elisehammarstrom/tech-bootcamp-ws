@@ -3,20 +3,6 @@ import {FavoriteEntity} from "@prisma/client";
 
 class FavoriteRepository {
 
-    async saveFavorite(userId: string, movieId: string): Promise<FavoriteEntity | null> {
-        try {
-            return await prisma.favoriteEntity.create({
-                data: {
-                    user_id: userId,
-                    movie_id: movieId
-                }
-            });
-        } catch (error) {
-            console.error("Error adding favorite:", error);
-            throw error;
-        }
-    }
-
     async deleteFavorite(user_id: string, movie_id: string): Promise<void> {
         await prisma.favoriteEntity.deleteMany({
             where: { user_id, movie_id },

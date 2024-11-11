@@ -18,22 +18,8 @@ class OmdbClient {
     }
 
     async searchByTitle(title: string): Promise<OmdbSearchResponse> {
-        try {
-            const response = await axios.get(this.baseUrl, {
-                params: {
-                    s: title,
-                    apikey: this.apiKey,
-                },
-            });
-            if (response.data && response.data.Response === 'True') {
-                return response.data;
-            } else {
-                return {} as OmdbSearchResponse;
-            }
-        } catch (error) {
-            console.error('Error fetching movie by title from OMDb:', error);
-            throw new Error('Failed to fetch movie from OMDb');
-        }
+        console.log('Searching for movie by title:', title);
+        return {} as OmdbSearchResponse;
     }
 
     async findByImdbId(imdbID: string) {

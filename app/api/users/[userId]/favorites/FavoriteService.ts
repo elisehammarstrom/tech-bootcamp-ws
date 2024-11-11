@@ -6,25 +6,11 @@ import {favoriteRepository} from "@/app/api/users/[userId]/favorites/FavoriteRep
 import {FavoriteEntity, MovieEntity} from "@prisma/client";
 import {prisma} from "@/prisma/prismaClient";
 import {movieRepository} from "@/app/api/movies/MovieRepository";
-import {UserDto} from "@/app/types/UserDto";
 
 export class FavoriteService {
 
     async isFavorite(userId: string, imdbId: string, ): Promise<boolean> {
         return favoriteRepository.isFavorite(userId, imdbId);
-    }
-
-    async addFavorite(userId: string, imdbId: string, ): Promise<Movie> {
-        const user: UserDto = await userService.getUser(userId);
-        if (!user) {
-            throw new Error(`User with ID ${userId} not found`);
-        }
-        const favoriteMovie: InternalMovie = await movieService.getOrCreateMovie(imdbId);
-        const favoriteEntity: FavoriteEntity | null = await favoriteRepository.saveFavorite(userId, favoriteMovie.id!);
-        if (!favoriteEntity) {
-            throw new Error(`Could not add favorite movie with IMDB ID ${imdbId} for user ${userId}`);
-        }
-        return favoriteMovie.toDto(true);
     }
 
     async deleteFavorite(user_id: string, imdb_id: string): Promise<void> {
