@@ -5,7 +5,7 @@ import {Movie} from "@/app/types/Movie";
 import {OmdbSearchResponse} from "@/app/types/omdb/OmdbSearchResponse";
 import {movieRepository} from "@/app/api/movies/MovieRepository";
 import { MovieEntity } from "@prisma/client";
-import {favoriteRepository} from "@/app/api/users/[userId]/favorites/FavoriteRepository";
+import {favoriteService} from "@/app/api/users/[userId]/favorites/FavoriteService";
 
 export class MovieService {
 
@@ -17,7 +17,7 @@ export class MovieService {
         }
         const movieDtos: Movie[] = await Promise.all(omdbMovies.map(async (omdbMovie) => {
             const movie: InternalMovie = InternalMovie.fromOmdbMovie(omdbMovie);
-            const isFavorite: boolean = await favoriteRepository.isFavorite(userId, movie.imdbId!);
+            const isFavorite: boolean = await favoriteService.isFavorite(userId, movie.imdbId!);
             return movie.toDto(isFavorite);
         }));
         return movieDtos;

@@ -10,6 +10,10 @@ import {UserDto} from "@/app/types/UserDto";
 
 export class FavoriteService {
 
+    async isFavorite(userId: string, imdbId: string, ): Promise<boolean> {
+        return favoriteRepository.isFavorite(userId, imdbId);
+    }
+
     async addFavorite(userId: string, imdbId: string, ): Promise<Movie> {
         const user: UserDto = await userService.getUser(userId);
         if (!user) {
