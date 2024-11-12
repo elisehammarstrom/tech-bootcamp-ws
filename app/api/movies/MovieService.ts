@@ -1,3 +1,4 @@
+
 import {OmdbMovie} from "@/app/types/omdb/OmdbMovie";
 import {InternalMovie} from "@/app/api/movies/InternalMovie";
 import {omdbClient} from "@/app/api/movies/OmdbClient";

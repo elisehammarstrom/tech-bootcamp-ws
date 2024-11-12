@@ -7,30 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model FavoriteEntity {
-  id       String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  user_id  String      @db.VarChar(50)
-  movie_id String      @db.Uuid
-  movie    MovieEntity @relation(fields: [movie_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  user     UserEntity  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+model UserEntity {
+  id        String           @id @map("id")
+  favorites FavoriteEntity[]
 
-  @@unique([user_id, movie_id], map: "unique_user_movie")
-  @@map("favorites")
+  @@map("users")
 }
 
 model MovieEntity {
-  id       String           @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  title    String           @db.VarChar(255)
-  img      String
-  imdb_id  String           @unique @db.VarChar(50)
-  favorite FavoriteEntity[]
+  id        String           @id @default(cuid()) @map("id")
+  title     String          @map("title")
+  img       String          @map("img")
+  imdb_id   String          @unique @map("imdb_id")
+  favorites FavoriteEntity[]
 
   @@map("movies")
 }
 
-model UserEntity {
-  id       String           @id @db.VarChar(50)
-  favorite FavoriteEntity[]
+model FavoriteEntity {
+  id       String      @id @default(cuid()) @map("id")
+  user_id  String      @map("user_id")
+  movie_id String      @map("movie_id")
+  user     UserEntity  @relation(fields: [user_id], references: [id])
+  movie    MovieEntity @relation(fields: [movie_id], references: [id])
 
-  @@map("users")
+  @@map("favorites")
 }

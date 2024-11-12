@@ -35,6 +35,20 @@ class FavoriteRepository {
             where: { user_id: userId }
         });
     }
+
+    async saveFavorite(userId: string, movieId: string): Promise<FavoriteEntity | null> {
+        try {
+          return await prisma.favoriteEntity.create({
+            data: {
+              user_id: userId,
+              movie_id: movieId
+            }
+          });
+        } catch (error) {
+          console.error("Error adding favorite:", error);
+          throw error;
+        }
+      }
 }
 
 export const favoriteRepository = new FavoriteRepository();
