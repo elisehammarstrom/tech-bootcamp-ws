@@ -60,8 +60,9 @@ Some tips to get maximal value out of the workshop:
 
 ## 0. Getting stared Frontend path
 
-1. Check out the `frontend` branch - this has already implemented all API endpoints, but lack the frontend components.
-2. Rename the `.env.sample` file to `.env`, and fill in the values as follows:
+1. If you haven't already, go to [OMDB API](https://www.omdbapi.com/apikey.aspx?__EVENTTARGET=freeAcct&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=%2FwEPDwUKLTIwNDY4MTIzNQ9kFgYCAQ9kFgICBw8WAh4HVmlzaWJsZWhkAgIPFgIfAGhkAgMPFgIfAGhkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBQtwYXRyZW9uQWNjdAUIZnJlZUFjY3QFCGZyZWVBY2N0oCxKYG7xaZwy2ktIrVmWGdWzxj%2FDhHQaAqqFYTiRTDE%3D&__VIEWSTATEGENERATOR=5E550F58&__EVENTVALIDATION=%2FwEdAAU%2BO86JjTqdg0yhuGR2tBukmSzhXfnlWWVdWIamVouVTzfZJuQDpLVS6HZFWq5fYpioiDjxFjSdCQfbG0SWduXFd8BcWGH1ot0k0SO7CfuulHLL4j%2B3qCcW3ReXhfb4KKsSs3zlQ%2B48KY6Qzm7wzZbR&at=freeAcct&Email=) to retrieve your api key (use the FREE variant).
+2. Check out the `frontend` branch - this has already implemented all API endpoints, but lack the frontend components.
+3. Rename the `.env.sample` file to `.env`, and fill in the values as follows:
 
 - _OMDB_API_KEY_ - the api key you have retrieved from OMDB
 - _DATABASE_URL_ - Set db url as postgresql://yourFirstname.yourLastname:password.38.7.50:5432/postgres, where password will be retrieved in the workshop.
